@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { dbService } from "../fbase";
 import { Card, Modal, Button } from "react-bootstrap";
 
+import "../style.css";
 function Customer(props) {
   const [editModal, setEditModal] = useState(false);
 
@@ -11,28 +12,29 @@ function Customer(props) {
       await dbService.doc(`customers/${props.customerObj.id}`).delete();
     }
   };
-  function date(input){
+  function date(input) {
     var date = new Date(input);
-    var month = date.getMonth()+1;
+    var month = date.getMonth() + 1;
 
-   var result = date.getFullYear() + "-" + month+"-"+date.getDate();
-   
-   
-    return  result; 
+    var result = date.getFullYear() + "-" + month + "-" + date.getDate();
 
+    return result;
   }
 
   return (
     <>
       {props.owner ? (
-        <Card style={{ width: "18rem" }}>
+        <Card
+          border="dark"
+          className="mr-2 ml-2 mb-2 "
+          style={{ width: "15em", display: "inline-block" }}
+        >
           <Card.Body>
             <Card.Title>이름:{props.customerObj.name}</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">
+            <Card.Subtitle>
               고객타입: {props.customerObj.position}
             </Card.Subtitle>
             <div className="show-customer-item">
-             
               <h6>전화번호:{props.customerObj.phone} </h6>
             </div>
             <div className="show-customer-item">
@@ -47,17 +49,17 @@ function Customer(props) {
             <div className="show-customer-item">
               <h6>날짜:{date(props.customerObj.createdAt)}</h6>
             </div>
-            
-            <div className="show-customer-item">
-              <button onClick={deleteCustomer}>지우기</button>
 
-              <button
+            <div className="show-customer-item">
+              <Button className="mr-2"
                 onClick={() => {
                   setEditModal(true);
                 }}
               >
                 수정
-              </button>
+              </Button>
+
+              <Button className = "btn btn-warning"onClick={deleteCustomer}>지우기</Button>
             </div>
           </Card.Body>
         </Card>
@@ -87,11 +89,10 @@ function EditModal(props) {
   const [editAppearance, setEditAppearance] = useState(props.appearance);
   const [editDemand, setEditDemand] = useState(props.demand);
   const [editAddr, setEditAddr] = useState(props.addr);
- 
 
   async function onSubmitEdit(e) {
     e.preventDefault();
-   
+
     await dbService.doc(`customers/${props.id}`).update({
       name: editName,
       phone: editPhone,
@@ -102,7 +103,7 @@ function EditModal(props) {
     });
     props.setEditModal(false);
   }
-  
+
   return (
     <Modal
       {...props}
@@ -144,7 +145,7 @@ function EditModal(props) {
             onChange={(event) => {
               setEditPosition(event.target.value);
             }}
-            value = {editPosition}
+            value={editPosition}
           >
             <h3>고객유형:</h3>
             <input

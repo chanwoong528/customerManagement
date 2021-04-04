@@ -26,7 +26,7 @@ function AppRouter(props) {
           )}
         </Switch>
       </>
-      <footer> 부동산고객리스트</footer>
+      
     </Router>
   );
 }

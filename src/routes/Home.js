@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { authService, dbService } from "../fbase";
 import Customer from "../components/Customer";
 
+import "../style.css";
+
 function Home(props) {
   const [name, setName] = useState(null);
   const [phone, setPhone] = useState(null);
@@ -86,17 +88,21 @@ function Home(props) {
   // so that you will be able to pull the data that only curUser created.
 
   return (
-    <>
-      <button
+    <div className ="home-main">
+    <div className ="home-button">
+      <Button className ="mr-2 mb-2"
         onClick={() => {
           setAddCustomerModal(true);
         }}
       >
         고객등록하기
-      </button>
-      <button onClick={orderName}>이름순</button>
-      <button onClick={orderDate}>날짜순</button>
-      <button onClick={orderType}>고객타입순</button>
+      </Button>
+      </div>
+      <div className = "home-sort-button">
+      <Button className ="mr-2 mb-2" onClick={orderName}>이름순</Button>
+      <Button className ="mr-2 mb-2" onClick={orderDate}>날짜순</Button>
+      <Button className ="mr-2 mb-2" onClick={orderType}>고객타입순</Button>
+      </div>
       <AddCustomerPage
         setName={setName}
         setPhone={setPhone}
@@ -109,16 +115,20 @@ function Home(props) {
         onHide={() => setAddCustomerModal(false)}
       />
 
-      {customers.map(
+      {
+        
+      customers.map(
         (cus) => (
+          
           <Customer
             key={cus.id}
             customerObj={cus}
             owner={cus.ownerId === authService.currentUser.uid}
           />
-        ) //shows only someone who you created
+          
+        ) 
       )}
-    </>
+    </div>
   );
 }
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AppRouter from "./Routes";
 import  { authService } from "../fbase";
-
+import Footer from "./Footer";
 function App() {
   const [init, setInit] = useState(false);
   const [isLogIn, setIsLogIn] = useState(false);
@@ -24,8 +24,10 @@ function App() {
       {init ? (
         <AppRouter isLogIn={isLogIn} userObj={userObj} />
       ) : (
-        "waiting for the firebase..."
+        "정보 로딩중...."
       )}
+
+          <Footer></Footer>
     </>
   );
 }
