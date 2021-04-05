@@ -10,7 +10,7 @@ import Navigation from "./Navigation";
 function AppRouter(props) {
   return (
     <Router>
-      {props.isLogIn && <Navigation isLogIn={props.isLogIn}></Navigation>}
+      { <Navigation isLogIn={props.isLogIn}></Navigation>}
       <>
         <Switch>
           {props.isLogIn ? (

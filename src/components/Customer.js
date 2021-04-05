@@ -6,7 +6,8 @@ import "../style.css";
 function Customer(props) {
   const [editModal, setEditModal] = useState(false);
 
-  const deleteCustomer = async () => {
+  const deleteCustomer = async (e) => {
+    e.preventDefault();
     const deleteConfirm = window.confirm("지우시겠습니까?");
     if (deleteConfirm) {
       await dbService.doc(`customers/${props.customerObj.id}`).delete();
@@ -26,16 +27,18 @@ function Customer(props) {
       {props.owner ? (
         <Card
           border="dark"
-          className="mr-2 ml-2 mb-2 "
+          className="mr-2 ml-2 mb-2 scroll-customer"
           style={{ width: "15em", display: "inline-block" }}
         >
           <Card.Body>
-            <Card.Title>이름:{props.customerObj.name}</Card.Title>
+            <Card.Title>
+              <h2>이름: {props.customerObj.name}</h2>
+            </Card.Title>
             <Card.Subtitle>
               고객타입: {props.customerObj.position}
             </Card.Subtitle>
             <div className="show-customer-item">
-              <h6>전화번호:{props.customerObj.phone} </h6>
+              <h4>전화번호:{props.customerObj.phone} </h4>
             </div>
             <div className="show-customer-item">
               <h6>인상착의:{props.customerObj.appearance}</h6>
@@ -44,14 +47,15 @@ function Customer(props) {
               <h6>요구사항:{props.customerObj.demand} </h6>
             </div>
             <div className="show-customer-item">
-              <h6>주소:{props.customerObj.addr}</h6>
+              <h5>주소:{props.customerObj.addr}</h5>
             </div>
             <div className="show-customer-item">
               <h6>날짜:{date(props.customerObj.createdAt)}</h6>
             </div>
 
             <div className="show-customer-item">
-              <Button className="mr-2"
+              <Button
+                className="mr-2"
                 onClick={() => {
                   setEditModal(true);
                 }}
@@ -59,7 +63,9 @@ function Customer(props) {
                 수정
               </Button>
 
-              <Button className = "btn btn-warning"onClick={deleteCustomer}>지우기</Button>
+              <Button className="btn btn-warning" onClick={deleteCustomer}>
+                지우기
+              </Button>
             </div>
           </Card.Body>
         </Card>
@@ -191,7 +197,7 @@ function EditModal(props) {
 
           <div className="add-customer-item">
             <h3>요구사항:</h3>
-            <input
+            <textarea
               type="text"
               onChange={(event) => {
                 setEditDemand(event.target.value);
@@ -211,13 +217,12 @@ function EditModal(props) {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
-
-          <div className="add-customer-item">
-            <Button type="submit" value="고객수정">
+        <Button type="submit" value="고객수정">
               고객수정
             </Button>
-          </div>
+          <Button variant="secondary" onClick={props.onHide}>Close</Button>
+
+         
         </Modal.Footer>
       </form>
     </Modal>

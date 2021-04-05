@@ -1,0 +1,28 @@
+.auth-main {
+    margin-top: 50px;
+  justify-content: center;
+  text-align: center;
+}
+input {
+  width: 400px;
+  border-radius: 10px;
+  outline: none;
+  text-align: center;
+  height: 50px;
+ font-size:x-large;
+}
+.auth-main button {
+  width: 300px;
+  height: 50px;
+  margin: 10px 5px 5px 10px;
+  font-size: large;
+}
+.auth-main img {
+  cursor: pointer;
+  width: 350px;
+  height: 80px;
+}
+img:hover {
+  background-color: rgb(255, 246, 122);
+  border-radius: 15px;
+}

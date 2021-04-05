@@ -5,7 +5,7 @@ import "../style.css";
 function Footer(){
 
 return(
-    <div className ="footer-main">&copy;{ (new Date().getFullYear()) } 부동산 고객 매니져</div>
+    <div className ="footer-main">&copy;{ (new Date().getFullYear()) } 부동산 고객 매니저</div>
 )
 
 }

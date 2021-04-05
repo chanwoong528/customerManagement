@@ -15,7 +15,8 @@ function Home(props) {
   const [customers, setCustomers] = useState([]);
 
   const [addCustomerModal, setAddCustomerModal] = useState(false);
-  const addCustomer = async () => {
+  const addCustomer = async (e) => {
+    e.preventDefault();
     await dbService.collection("customers").add({
       name: name,
       phone: phone,
@@ -34,47 +35,11 @@ function Home(props) {
     setDemand("");
     setAddr("");
   };
-  const orderName = () =>{
-    dbService
-    .collection("customers").orderBy("name", "asc")
-    .onSnapshot((snapshot) => {
-      const customerArray = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setCustomers(customerArray);
-    });
-  }
-  const orderDate = () =>{
-    dbService
-    .collection("customers").orderBy("createdAt", "asc")
-    .onSnapshot((snapshot) => {
-      const customerArray = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setCustomers(customerArray);
-    });
-  }
-  const orderType = () =>{
-    dbService
-    .collection("customers").orderBy("position", "asc")
-    .onSnapshot((snapshot) => {
-      const customerArray = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setCustomers(customerArray);
-    });
-  }
- 
- 
-
-  useEffect(() => {
-    //function to make it real time
-   
+  const orderName = (e) => {
+    e.preventDefault();
     dbService
       .collection("customers")
+      .orderBy("name", "asc")
       .onSnapshot((snapshot) => {
         const customerArray = snapshot.docs.map((doc) => ({
           id: doc.id,
@@ -82,26 +47,71 @@ function Home(props) {
         }));
         setCustomers(customerArray);
       });
+  };
+  const orderDate = (e) => {
+    e.preventDefault();
+    dbService
+      .collection("customers")
+      .orderBy("createdAt", "asc")
+      .onSnapshot((snapshot) => {
+        const customerArray = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setCustomers(customerArray);
+      });
+  };
+  const orderType = (e) => {
+    e.preventDefault();
+    dbService
+      .collection("customers")
+      .orderBy("position", "asc")
+      .onSnapshot((snapshot) => {
+        const customerArray = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setCustomers(customerArray);
+      });
+  };
+
+  useEffect(() => {
+    //function to make it real time
+
+    dbService.collection("customers").onSnapshot((snapshot) => {
+      const customerArray = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setCustomers(customerArray);
+    });
   }, []);
 
   //have to make show customer and probably have to toss curUser information and also put that in the DB
   // so that you will be able to pull the data that only curUser created.
 
   return (
-    <div className ="home-main">
-    <div className ="home-button">
-      <Button className ="mr-2 mb-2"
-        onClick={() => {
-          setAddCustomerModal(true);
-        }}
-      >
-        고객등록하기
-      </Button>
+    <div className="home-main">
+      <div className="home-button">
+        <Button
+          className="mr-2 mb-2"
+          onClick={() => {
+            setAddCustomerModal(true);
+          }}
+        >
+          고객등록하기
+        </Button>
       </div>
-      <div className = "home-sort-button">
-      <Button className ="mr-2 mb-2" onClick={orderName}>이름순</Button>
-      <Button className ="mr-2 mb-2" onClick={orderDate}>날짜순</Button>
-      <Button className ="mr-2 mb-2" onClick={orderType}>고객타입순</Button>
+      <div className="home-sort-button">
+        <Button variant ="outline-primary" className="mr-2 mb-2" onClick={orderName}>
+          이름순
+        </Button>
+        <Button variant ="outline-primary" className="mr-2 mb-2" onClick={orderDate}>
+          날짜순
+        </Button>
+        <Button variant ="outline-primary" className="mr-2 mb-2" onClick={orderType}>
+          고객타입순
+        </Button>
       </div>
       <AddCustomerPage
         setName={setName}
@@ -115,19 +125,13 @@ function Home(props) {
         onHide={() => setAddCustomerModal(false)}
       />
 
-      {
-        
-      customers.map(
-        (cus) => (
-          
-          <Customer
-            key={cus.id}
-            customerObj={cus}
-            owner={cus.ownerId === authService.currentUser.uid}
-          />
-          
-        ) 
-      )}
+      {customers.map((cus) => (
+        <Customer
+          key={cus.id}
+          customerObj={cus}
+          owner={cus.ownerId === authService.currentUser.uid}
+        />
+      ))}
     </div>
   );
 }
@@ -140,7 +144,6 @@ function AddCustomerPage(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-    
       <form onSubmit={props.addCustomer}>
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">고객등록</Modal.Title>
@@ -195,9 +198,9 @@ function AddCustomerPage(props) {
             />
           </div>
 
-          <div className="add-customer-item">
+          <div className="add-customer-item-demand">
             <h3>요구사항:</h3>
-            <input
+            <textarea
               type="text"
               onChange={(event) => {
                 props.setDemand(event.target.value);
@@ -215,13 +218,10 @@ function AddCustomerPage(props) {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
-
-          <div className="add-customer-item">
-            <Button type="submit" value="고객등록" onClick={props.onHide}>
-              고객등록
-            </Button>
-          </div>
+          <Button type="submit" value="고객등록" onClick={props.onHide}>
+            고객등록
+          </Button>
+          <Button variant="secondary" onClick={props.onHide}>Close</Button>
         </Modal.Footer>
       </form>
     </Modal>

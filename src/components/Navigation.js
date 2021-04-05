@@ -1,11 +1,10 @@
 import React from "react";
 import  { authService } from "../fbase";
 import {
-  Button,
+  
   Navbar,
   Nav,
-  Form,
-  FormControl,
+  
  } from "react-bootstrap";
 import { useHistory } from "react-router";
 
@@ -24,15 +23,14 @@ function Navigation(props) {
             <Nav.Link href="/Auth" onClick={() => {signOut()}}>
               로그아웃
             </Nav.Link>
+            
           ) : (
             <Nav.Link href="/Auth" onClick={() => {}}>
               로그인
             </Nav.Link>
           )}
 
-          <Nav.Link href="#customerList" onClick={() => {}}>
-            고객 보기
-          </Nav.Link>
+          
         </Nav>
         
       </Navbar>
