@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/customerManagement/static/css/main.fc8a263c.chunk.css",
-    "main.js": "/customerManagement/static/js/main.8d31f56e.chunk.js",
-    "main.js.map": "/customerManagement/static/js/main.8d31f56e.chunk.js.map",
+    "main.js": "/customerManagement/static/js/main.5fdd78c9.chunk.js",
+    "main.js.map": "/customerManagement/static/js/main.5fdd78c9.chunk.js.map",
     "runtime-main.js": "/customerManagement/static/js/runtime-main.4563e133.js",
     "runtime-main.js.map": "/customerManagement/static/js/runtime-main.4563e133.js.map",
-    "static/js/2.f665fff2.chunk.js": "/customerManagement/static/js/2.f665fff2.chunk.js",
-    "static/js/2.f665fff2.chunk.js.map": "/customerManagement/static/js/2.f665fff2.chunk.js.map",
+    "static/js/2.6b93c8a7.chunk.js": "/customerManagement/static/js/2.6b93c8a7.chunk.js",
+    "static/js/2.6b93c8a7.chunk.js.map": "/customerManagement/static/js/2.6b93c8a7.chunk.js.map",
     "index.html": "/customerManagement/index.html",
     "static/css/main.fc8a263c.chunk.css.map": "/customerManagement/static/css/main.fc8a263c.chunk.css.map",
-    "static/js/2.f665fff2.chunk.js.LICENSE.txt": "/customerManagement/static/js/2.f665fff2.chunk.js.LICENSE.txt"
+    "static/js/2.6b93c8a7.chunk.js.LICENSE.txt": "/customerManagement/static/js/2.6b93c8a7.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.4563e133.js",
-    "static/js/2.f665fff2.chunk.js",
+    "static/js/2.6b93c8a7.chunk.js",
     "static/css/main.fc8a263c.chunk.css",
-    "static/js/main.8d31f56e.chunk.js"
+    "static/js/main.5fdd78c9.chunk.js"
   ]
 }
