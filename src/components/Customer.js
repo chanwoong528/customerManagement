@@ -38,7 +38,9 @@ function Customer(props) {
               고객타입: {props.customerObj.position}
             </Card.Subtitle>
             <div className="show-customer-item">
+            <a href={`tel:=${props.customerObj.phone}`} >
               <h4>전화번호:{props.customerObj.phone} </h4>
+              </a>
             </div>
             <div className="show-customer-item">
               <h6>인상착의:{props.customerObj.appearance}</h6>

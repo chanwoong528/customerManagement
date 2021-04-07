@@ -51,8 +51,16 @@ span {
 textarea {
   text-align: initial;
   height: 150px;
-  width: 400px;
+  width: 90%;
   outline: black;
   resize: none;
-
+}
+.add-customer-item input {
+  width: 90%;
+  height: 50px;
+}
+.add-customer-item input[type="radio"] {
+  border: 0px;
+  width: 8%;
+  height: 2em;
 }

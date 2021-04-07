@@ -6,26 +6,27 @@ import {
   Nav,
   
  } from "react-bootstrap";
+ import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 
 function Navigation(props) {
   const history = useHistory();
   function signOut() {
-    history.push("/home");
+    history.push("/");
     authService.signOut();
   }
   return (
     <>
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="/">부동산 고객관리</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/">부동산 고객관리</Navbar.Brand>
         <Nav className="mr-auto">
           {props.isLogIn ? (
-            <Nav.Link href="/Auth" onClick={() => {signOut()}}>
+            <Nav.Link as={Link} to="/" onClick={() => {signOut()}}>
               로그아웃
             </Nav.Link>
             
           ) : (
-            <Nav.Link href="/Auth" onClick={() => {}}>
+            <Nav.Link as={Link} to="/" onClick={() => {}}>
               로그인
             </Nav.Link>
           )}
