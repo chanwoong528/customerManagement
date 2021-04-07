@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/customerManagement/static/css/main.bacacc64.chunk.css",
-    "main.js": "/customerManagement/static/js/main.f0cc0191.chunk.js",
-    "main.js.map": "/customerManagement/static/js/main.f0cc0191.chunk.js.map",
+    "main.js": "/customerManagement/static/js/main.bb264cbb.chunk.js",
+    "main.js.map": "/customerManagement/static/js/main.bb264cbb.chunk.js.map",
     "runtime-main.js": "/customerManagement/static/js/runtime-main.4563e133.js",
     "runtime-main.js.map": "/customerManagement/static/js/runtime-main.4563e133.js.map",
     "static/js/2.f5685f8a.chunk.js": "/customerManagement/static/js/2.f5685f8a.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.4563e133.js",
     "static/js/2.f5685f8a.chunk.js",
     "static/css/main.bacacc64.chunk.css",
-    "static/js/main.f0cc0191.chunk.js"
+    "static/js/main.bb264cbb.chunk.js"
   ]
 }
